@@ -4,7 +4,7 @@ GRE="\\033[92m"
 END="\\033[0m"
 
 .DEFAULT_GOAL :=
-default: test integ
+default: test integ integ-cover
 
 clean: # Clean generated files
 	@rm -rf $(BUILD_DIR)
