@@ -10,3 +10,8 @@ build: # Build project
 
 run: clean build # Run server
 	@build/go-rest-api
+
+integration: clean build # Run integration tests
+	@build/go-rest-api &
+	@venom run *.yml
+	@killall go-rest-api

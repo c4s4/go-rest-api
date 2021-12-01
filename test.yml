@@ -1,0 +1,28 @@
+# Integration test using Venom with Tavern executor
+
+name: User
+vars:
+  URL: "http://127.0.0.1:8080"
+
+testcases:
+
+- name: Test hello
+  steps:
+  - type: tavern
+    request:
+      url: "{{.URL}}/hello/World"
+      method: GET
+    response:
+      statusCode: 200
+      json:
+        message: "Hello World!"
+
+- name: Test not found
+  steps:
+  - type: tavern
+    request:
+      url: "{{.URL}}/hello"
+      method: GET
+    response:
+      statusCode: 404
+      body: "404 page not found"
