@@ -11,6 +11,9 @@ build: # Build project
 run: clean build # Run server
 	@build/go-rest-api
 
+test: # Run unit tests
+	@go test -cover ./...
+
 integration: clean build # Run integration tests
 	@build/go-rest-api &
 	@venom run *.yml
