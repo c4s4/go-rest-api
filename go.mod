@@ -1,4 +1,4 @@
-module go-rest-api
+module github.com/c4s4/go-rest-api
 
 go 1.17
 
