@@ -1,5 +1,8 @@
 BUILD_DIR = build
 
+.DEFAULT_GOAL :=
+default: test integ
+
 clean: # Clean generated files
 	@rm -rf $(BUILD_DIR)
 
@@ -14,7 +17,8 @@ run: clean build # Run server
 test: # Run unit tests
 	@go test -cover ./...
 
-integration: clean build # Run integration tests
-	@build/go-rest-api &
-	@venom run *.yml
-	@killall go-rest-api
+integ: clean build # Run integration tests
+	@build/go-rest-api & \
+		PID=$$!; \
+		venom run *.yml; \
+		kill $$PID
